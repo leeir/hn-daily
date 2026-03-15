@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HN 每日精选 · 2026-03-15 周日</title>
+<meta property="og:title" content="HN 每日精选 · 2026-03-15 周日">
+<meta property="og:description" content="今日 Hacker News Top 30 · 中英双语">
+<meta property="og:type" content="website">
+<style>
+  :root {
+    --bg: #0f0f0f;
+    --card: #1a1a1a;
+    --border: #2a2a2a;
+    --accent: #ff6600;
+    --accent2: #ff8c42;
+    --text: #e8e8e8;
+    --muted: #888;
+    --zh: #b0d4ff;
+    --tag-bg: #2a2a2a;
+    --score: #ff6600;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", sans-serif;
+    line-height: 1.6;
+    padding: 0 16px 60px;
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  /* Header */
+  header {
+    padding: 36px 0 24px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 28px;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+  .logo-icon {
+    width: 36px; height: 36px;
+    background: var(--accent);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; font-weight: 900; color: white;
+    flex-shrink: 0;
+  }
+  h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.3px;
+  }
+  .subtitle {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+  .date-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 12px;
+  }
+
+  /* Story list */
+  .story {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 0 14px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border);
+    transition: background .15s;
+  }
+  .story:last-child { border-bottom: none; }
+  .story:hover { background: rgba(255,255,255,.02); border-radius: 8px; padding-left: 8px; padding-right: 8px; margin: 0 -8px; }
+
+  .rank {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--border);
+    text-align: right;
+    padding-top: 2px;
+    user-select: none;
+    font-variant-numeric: tabular-nums;
+  }
+  .story:nth-child(-n+3) .rank { color: var(--accent); }
+
+  .content { min-width: 0; }
+
+  .title-en {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.4;
+    margin-bottom: 4px;
+    text-decoration: none;
+    display: block;
+  }
+  .title-en:hover { color: var(--accent2); }
+
+  .title-zh {
+    font-size: 14px;
+    color: var(--zh);
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 10px;
+    align-items: center;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .score {
+    color: var(--score);
+    font-weight: 600;
+  }
+  .domain {
+    background: var(--tag-bg);
+    border-radius: 4px;
+    padding: 1px 7px;
+    font-size: 11px;
+  }
+  .meta a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .meta a:hover { color: var(--accent2); }
+
+  /* Archive nav */
+  .archive {
+    margin-top: 40px;
+    padding: 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+  .archive h3 {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+  }
+  .archive-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .archive-links a {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--tag-bg);
+    border-radius: 6px;
+    padding: 4px 10px;
+    text-decoration: none;
+    border: 1px solid var(--border);
+  }
+  .archive-links a:hover { color: var(--accent2); border-color: var(--accent2); }
+  .archive-links a.active {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  footer {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  footer a { color: var(--muted); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-icon">Y</div>
+    <h1>HN 每日精选</h1>
+  </div>
+  <div class="subtitle">Hacker News Top 30 · 中英双语每日精选</div>
+  <div class="date-badge">📅 2026-03-15 周日</div>
+</header>
+
+<main>
+<div class="story">
+  <div class="rank">1</div>
+  <div class="content">
+    <a class="title-en" href="https://agelesslinux.org/" target="_blank" rel="noopener">Ageless Linux – Software for humans of indeterminate age</a>
+    <div class="title-zh">Ageless Linux – 为不确定年龄的人提供的软件</div>
+    <div class="meta">
+      <span class="score">▲ 703</span>
+      <span>💬 <a href="https://news.ycombinator.com/item?id=47381791" target="_blank">461 条讨论</a></span>
+      <span class="domain">agelesslinux.org</span>
+    </div>
+  </div>
+</div>
+<div class="story">
+  <div class="rank">2</div>
+  <div class="content">
+    <a class="title-en" href="https://s4dbrd.github.io/posts/how-kernel-anti-cheats-work/" target="_blank" rel="noopener">How kernel anti-cheats work</a>
+    <div class="title-zh">内核反作弊如何工作</div>
+    <div class="meta">
+      <span class="score">▲ 237</span>
+      <span>💬 <a href="https://news.ycombinator.com/item?id=47382791" target="_blank">202 条讨论</a></span>
+      <span class="domain">s4dbrd.github.io</span>
+    </div>
+  </div>
+</div>
+<div class="story">
+  <div class="rank">3</div>
+  <div class="content">
+    <a class="title-en" href="https://sa.lj.am/rack-mount-hydroponics/" target="_blank" rel="noopener">Rack-mount hydroponics</a>
+    <div class="title-zh">机架式水培</div>
+    <div class="meta">
+      <span class="score">▲ 219</span>
+      <span>💬 <a href="https://news.ycombinator.com/item?id=47384352" target="_blank">52 条讨论</a></span>
+      <span class="domain">sa.lj.am</span>
+    </div>
+  </div>
+</div>
+<div class="story">
+  <div class="rank">4</div>
+  <div class="content">
+    <a class="title-en" href="https://www.charlespetzold.com/blog/2026/02/The-Appalling-Stupidity-of-Spotifys-AI-DJ.html" target="_blank" rel="noopener">The Appalling Stupidity of Spotify's AI DJ</a>
+    <div class="title-zh">Spotify 人工智能 DJ 的惊人愚蠢</div>
+    <div class="meta">
+      <span class="score">▲ 213</span>
+      <span>💬 <a href="https://news.ycombinator.com/item?id=47385272" target="_blank">185 条讨论</a></span>
+      <span class="domain">charlespetzold.com</span>
+    </div>
+  </div>
+</div>
+<div class="story">
+  <div class="rank">5</div>
+  <div class="content">
+    <a class="title-en" href="https://sebi.io/posts/2026-03-14-allow-me-to-get-to-know-you-mistakes-and-all/" target="_blank" rel="noopener">Allow me to get to know you, mistakes and all</a>
+    <div class="title-zh">让我了解你、错误以及一切</div>
+    <div class="meta">
+      <span class="score">▲ 193</span>
+      <span>💬 <a href="https://news.ycombinator.com/item?id=47381736" target="_blank">88 条讨论</a></span>
+      <span class="domain">sebi.io</span>
+    </div>
+  </div>
+</div>
+<div class="story">
+  <div class="rank">6</div>
+  <div class="content">
+    <a class="title-en" href="https://github.com/novatic14/MANPADS-System-Launcher-and-Rocket" target="_blank" rel="noopener">$96 3D-printed rocket that recalculates its mid-air trajectory using a $5 sensor</a>
+    <div class="title-zh">价值 96 美元的 3D 打印火箭，使用 5 美元的传感器重新计算其空中轨迹</div>
+    <div class="meta">
+      <span class="score">▲ 186</span>
+      <span>💬 <a href="https://news.ycombinator.com/item?id=47385935" target="_blank">102 条讨论</a></span>
+      <span class="domain">github.com</span>
+    </div>
+  </div>
+</div>
+<div class="story">
+  <div class="rank">7</div>
+  <div class="content">
+    <a class="title-en" href="https://github.com/xodn348/han" target="_blank" rel="noopener">Show HN: Han – A Korean programming language written in Rust</a>
+    <div class="title-zh">Show HN：Han – 用 Rust 编写的韩语编程语言</div>
+    <div class="meta">
+      <span class="score">▲ 186</span>
+      <span>💬 <a href="https://news.ycombinator.com/item?id=47381382" target="_blank">102 条讨论</a></span>
+      <span class="domain">github.com</span>
+    </div>
+  </div>
+</div>
+<div class="story">
+  <div class="rank">8</div>
+  <div class="content">
+    <a class="title-en" href="https://chrlschn.dev/blog/2026/03/mcp-is-dead-long-live-mcp/" target="_blank" rel="noopener">MCP is dead; long live MCP</a>
+    <div class="title-zh">MCP已死； MCP万岁</div>
+    <div class="meta">
+      <span class="score">▲ 185</span>
+      <span>💬 <a href="https://news.ycombinator.com/item?id=47380270" target="_blank">165 条讨论</a></span>
+      <span class="domain">chrlschn.dev</span>
+    </div>
+  </div>
+</div>
+<div class="story">
+  <div class="rank">9</div>
+  <div class="content">
+    <a class="title-en" href="https://purplesyringa.moe/blog/an-ode-to-bzip/" target="_blank" rel="noopener">An ode to bzip</a>
+    <div class="title-zh">bzip 的颂歌</div>
+    <div class="meta">
+      <span class="score">▲ 157</span>
+      <span>💬 <a href="https://news.ycombinator.com/item?id=47377998" target="_blank">82 条讨论</a></span>
+      <span class="domain">purplesyringa.moe</span>
+    </div>
+  </div>
+</div>
+<div class="story">
+  <div class="rank">10</div>
+  <div class="content">
+    <a class="title-en" href="https://www.smithsonianmag.com/science-nature/bumblebee-queens-breathe-underwater-to-survive-drowning-revealing-how-they-can-live-submerged-for-a-week-180988330/" target="_blank" rel="noopener">Bumblebee queens breathe underwater to survive drowning</a>
+    <div class="title-zh">大黄蜂皇后在水下呼吸以求溺水生存</div>
+    <div class="meta">
+      <span class="score">▲ 153</span>
+      <span>💬 <a href="https://news.ycombinator.com/item?id=47381011" target="_blank">35 条讨论</a></span>
+      <span class="domain">smithsonianmag.com</span>
+    </div>
+  </div>
+</div>
+<div class="story">
+  <div class="rank">11</div>
+  <div class="content">
+    <a class="title-en" href="https://robertsdotpm.github.io/cryptography/tcp_hole_punching.html" target="_blank" rel="noopener">A most elegant TCP hole punching algorithm</a>
+    <div class="title-zh">最优雅的TCP打洞算法</div>
+    <div class="meta">
+      <span class="score">▲ 129</span>
+      <span>💬 <a href="https://news.ycombinator.com/item?id=47384032" target="_blank">47 条讨论</a></span>
+      <span class="domain">robertsdotpm.github.io</span>
+    </div>
+  </div>
+</div>
+<div class="story">
+  <div class="rank">12</div>
+  <div class="content">
+    <a class="title-en" href="https://www.bbc.com/news/articles/cg4g7kn99q3o" target="_blank" rel="noopener">Treasure hunter freed from jail after refusing to turn over shipwreck gold</a>
+    <div class="title-zh">拒绝交出沉船黄金的寻宝者获释</div>
+    <div class="meta">
+      <span class="score">▲ 124</span>
+      <span>💬 <a href="https://news.ycombinator.com/item?id=47383804" target="_blank">164 条讨论</a></span>
+      <span class="domain">bbc.com</span>
+    </div>
+  </div>
+</div>
+<div class="story">
+  <div class="rank">13</div>
+  <div class="content">
+    <a class="title-en" href="https://atgreen.github.io/repl-yell/posts/sbcl-fibers/" target="_blank" rel="noopener">SBCL Fibers – Lightweight Cooperative Threads</a>
+    <div class="title-zh">SBCL 纤维 – 轻量级协作螺纹</div>
+    <div class="meta">
+      <span class="score">▲ 123</span>
+      <span>💬 <a href="https://news.ycombinator.com/item?id=47382398" target="_blank">23 条讨论</a></span>
+      <span class="domain">atgreen.github.io</span>
+    </div>
+  </div>
+</div>
+<div class="story">
+  <div class="rank">14</div>
+  <div class="content">
+    <a class="title-en" href="https://pointersgonewild.com/2026-03-06-a-recursive-algorithm-to-render-signed-distance-fields/" target="_blank" rel="noopener">A Recursive Algorithm to Render Signed Distance Fields</a>
+    <div class="title-zh">渲染有符号距离场的递归算法</div>
+    <div class="meta">
+      <span class="score">▲ 113</span>
+      <span>💬 <a href="https://news.ycombinator.com/item?id=47335796" target="_blank">7 条讨论</a></span>
+      <span class="domain">pointersgonewild.com</span>
+    </div>
+  </div>
+</div>
+<div class="story">
+  <div class="rank">15</div>
+  <div class="content">
+    <a class="title-en" href="https://r2d3.us/visual-intro-to-machine-learning-part-1/" target="_blank" rel="noopener">A Visual Introduction to Machine Learning (2015)</a>
+    <div class="title-zh">机器学习的可视化介绍 (2015)</div>
+    <div class="meta">
+      <span class="score">▲ 103</span>
+      <span>💬 <a href="https://news.ycombinator.com/item?id=47386116" target="_blank">5 条讨论</a></span>
+      <span class="domain">r2d3.us</span>
+    </div>
+  </div>
+</div>
+<div class="story">
+  <div class="rank">16</div>
+  <div class="content">
+    <a class="title-en" href="https://www.johndcook.com/blog/2026/03/10/sinh-arccosh/" target="_blank" rel="noopener">Why Mathematica does not simplify sinh(arccosh(x))</a>
+    <div class="title-zh">为什么 Mathematica 不简化 sinh(arccosh(x))</div>
+    <div class="meta">
+      <span class="score">▲ 94</span>
+      <span>💬 <a href="https://news.ycombinator.com/item?id=47335325" target="_blank">24 条讨论</a></span>
+      <span class="domain">johndcook.com</span>
+    </div>
+  </div>
+</div>
+<div class="story">
+  <div class="rank">17</div>
+  <div class="content">
+    <a class="title-en" href="https://terrytao.wordpress.com/2026/03/13/mathematics-distillation-challenge-equational-theories/" target="_blank" rel="noopener">Mathematics Distillation Challenge – Equational Theories</a>
+    <div class="title-zh">数学蒸馏挑战——方程理论</div>
+    <div class="meta">
+      <span class="score">▲ 81</span>
+      <span>💬 <a href="https://news.ycombinator.com/item?id=47374924" target="_blank">3 条讨论</a></span>
+      <span class="domain">terrytao.wordpress.com</span>
+    </div>
+  </div>
+</div>
+<div class="story">
+  <div class="rank">18</div>
+  <div class="content">
+    <a class="title-en" href="https://www.worksinprogress.news/p/many-of-the-tastiest-vegetables-are" target="_blank" rel="noopener">Centuries of selective breeding turned wild cabbage into different vegetables</a>
+    <div class="title-zh">几个世纪的选择性育种将野生卷心菜变成了不同的蔬菜</div>
+    <div class="meta">
+      <span class="score">▲ 76</span>
+      <span>💬 <a href="https://news.ycombinator.com/item?id=47337423" target="_blank">30 条讨论</a></span>
+      <span class="domain">worksinprogress.news</span>
+    </div>
+  </div>
+</div>
+<div class="story">
+  <div class="rank">19</div>
+  <div class="content">
+    <a class="title-en" href="https://ayushtambde.com/blog/tree-search-distillation-for-language-models-using-ppo/" target="_blank" rel="noopener">Tree Search Distillation for Language Models Using PPO</a>
+    <div class="title-zh">使用 PPO 的语言模型树搜索蒸馏</div>
+    <div class="meta">
+      <span class="score">▲ 69</span>
+      <span>💬 <a href="https://news.ycombinator.com/item?id=47383059" target="_blank">5 条讨论</a></span>
+      <span class="domain">ayushtambde.com</span>
+    </div>
+  </div>
+</div>
+<div class="story">
+  <div class="rank">20</div>
+  <div class="content">
+    <a class="title-en" href="https://news.ycombinator.com/item?id=47386813" target="_blank" rel="noopener">I'm 60 years old. Claude Code killed a passion</a>
+    <div class="title-zh">我今年60岁了。克劳德·科德扼杀了激情</div>
+    <div class="meta">
+      <span class="score">▲ 58</span>
+      <span>💬 <a href="https://news.ycombinator.com/item?id=47386813" target="_blank">28 条讨论</a></span>
+      <span class="domain">news.ycombinator.com</span>
+    </div>
+  </div>
+</div>
+<div class="story">
+  <div class="rank">21</div>
+  <div class="content">
+    <a class="title-en" href="https://kubicki.org/letters/the-festival-of-the-machines/" target="_blank" rel="noopener">A look inside Dialector, filmmaker Chris Marker's chatbot from 1988</a>
+    <div class="title-zh">电影制作人 Chris Marker 于 1988 年开发的聊天机器人 Dialector 内部一探究竟</div>
+    <div class="meta">
+      <span class="score">▲ 56</span>
+      <span>💬 <a href="https://news.ycombinator.com/item?id=47337087" target="_blank">4 条讨论</a></span>
+      <span class="domain">kubicki.org</span>
+    </div>
+  </div>
+</div>
+<div class="story">
+  <div class="rank">22</div>
+  <div class="content">
+    <a class="title-en" href="https://jvns.ca/blog/2026/03/10/examples-for-the-tcpdump-and-dig-man-pages/" target="_blank" rel="noopener">Examples for the tcpdump and dig man pages</a>
+    <div class="title-zh">tcpdump 和 dig 手册页的示例</div>
+    <div class="meta">
+      <span class="score">▲ 35</span>
+      <span>💬 <a href="https://news.ycombinator.com/item?id=47334668" target="_blank">4 条讨论</a></span>
+      <span class="domain">jvns.ca</span>
+    </div>
+  </div>
+</div>
+<div class="story">
+  <div class="rank">23</div>
+  <div class="content">
+    <a class="title-en" href="https://www.stripes.com/theaters/us/2026-03-13/pentagon-modernization-plan-stars-and-stripes-21051529.html" target="_blank" rel="noopener">Pentagon expands oversight of Stars and Stripes, limits content</a>
+    <div class="title-zh">五角大楼扩大对星条旗的监督，限制内容</div>
+    <div class="meta">
+      <span class="score">▲ 34</span>
+      <span>💬 <a href="https://news.ycombinator.com/item?id=47386651" target="_blank">1 条讨论</a></span>
+      <span class="domain">stripes.com</span>
+    </div>
+  </div>
+</div>
+<div class="story">
+  <div class="rank">24</div>
+  <div class="content">
+    <a class="title-en" href="https://hnlyman.github.io/pages/prime32_I.html" target="_blank" rel="noopener">Generating All 32-Bit Primes (Part I)</a>
+    <div class="title-zh">生成所有 32 位素数（第一部分）</div>
+    <div class="meta">
+      <span class="score">▲ 25</span>
+      <span>💬 <a href="https://news.ycombinator.com/item?id=47386441" target="_blank">4 条讨论</a></span>
+      <span class="domain">hnlyman.github.io</span>
+    </div>
+  </div>
+</div>
+<div class="story">
+  <div class="rank">25</div>
+  <div class="content">
+    <a class="title-en" href="https://tomclancy.info/harold-and-george.html" target="_blank" rel="noopener">A Theory of the World as run by large adult children</a>
+    <div class="title-zh">由成年子女主导的世界理论</div>
+    <div class="meta">
+      <span class="score">▲ 22</span>
+      <span>💬 <a href="https://news.ycombinator.com/item?id=47386908" target="_blank">4 条讨论</a></span>
+      <span class="domain">tomclancy.info</span>
+    </div>
+  </div>
+</div>
+<div class="story">
+  <div class="rank">26</div>
+  <div class="content">
+    <a class="title-en" href="https://signet.watch" target="_blank" rel="noopener">Show HN: Signet – Autonomous wildfire tracking from satellite and weather data</a>
+    <div class="title-zh">Show HN：Signet – 根据卫星和天气数据进行自主野火跟踪</div>
+    <div class="meta">
+      <span class="score">▲ 19</span>
+      <span>💬 <a href="https://news.ycombinator.com/item?id=47386581" target="_blank">0 条讨论</a></span>
+      <span class="domain">signet.watch</span>
+    </div>
+  </div>
+</div>
+<div class="story">
+  <div class="rank">27</div>
+  <div class="content">
+    <a class="title-en" href="https://www.science.org/doi/10.1126/sciadv.adz2240" target="_blank" rel="noopener">Human Organ Atlas</a>
+    <div class="title-zh">人体器官图谱</div>
+    <div class="meta">
+      <span class="score">▲ 16</span>
+      <span>💬 <a href="https://news.ycombinator.com/item?id=47348502" target="_blank">1 条讨论</a></span>
+      <span class="domain">science.org</span>
+    </div>
+  </div>
+</div>
+<div class="story">
+  <div class="rank">28</div>
+  <div class="content">
+    <a class="title-en" href="https://fatih-erikli-potato.github.io/blog/slicing-bezier-surfaces.html" target="_blank" rel="noopener">Slicing Bezier Surfaces</a>
+    <div class="title-zh">贝塞尔曲线曲面切片</div>
+    <div class="meta">
+      <span class="score">▲ 15</span>
+      <span>💬 <a href="https://news.ycombinator.com/item?id=47349871" target="_blank">4 条讨论</a></span>
+      <span class="domain">fatih-erikli-potato.github.io</span>
+    </div>
+  </div>
+</div>
+<div class="story">
+  <div class="rank">29</div>
+  <div class="content">
+    <a class="title-en" href="https://kanfa.macbudkowski.com/vibecoding-cryptosaurus" target="_blank" rel="noopener">100 hour gap between a vibecoded prototype and a working product</a>
+    <div class="title-zh">vivicoded 原型和工作产品之间有 100 小时的差距</div>
+    <div class="meta">
+      <span class="score">▲ 12</span>
+      <span>💬 <a href="https://news.ycombinator.com/item?id=47386636" target="_blank">5 条讨论</a></span>
+      <span class="domain">kanfa.macbudkowski.com</span>
+    </div>
+  </div>
+</div>
+<div class="story">
+  <div class="rank">30</div>
+  <div class="content">
+    <a class="title-en" href="https://www.righto.com/2019/11/ibm-sonic-delay-lines-and-history-of.html" target="_blank" rel="noopener">IBM, sonic delay lines, and the history of the 80×24 display</a>
+    <div class="title-zh">IBM、声音延迟线和 80×24 显示器的历史</div>
+    <div class="meta">
+      <span class="score">▲ 8</span>
+      <span>💬 <a href="https://news.ycombinator.com/item?id=47386246" target="_blank">1 条讨论</a></span>
+      <span class="domain">righto.com</span>
+    </div>
+  </div>
+</div>
+</main>
+
+<div class="archive"><h3>📚 历史存档</h3><div class="archive-links"><a href="2026-03-15.html" class="active">2026-03-15</a></div></div>
+
+<footer>
+  <p>数据来源 <a href="https://news.ycombinator.com" target="_blank">Hacker News</a> · 由 OpenClaw 自动生成</p>
+</footer>
+
+</body>
+</html>
